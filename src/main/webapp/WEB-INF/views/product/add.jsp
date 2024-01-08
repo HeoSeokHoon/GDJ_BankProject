@@ -19,9 +19,9 @@
 					<label for="productContents" class="form-label">Product_Contents</label>
 					<input type="text" class="form-control" id="productContents" name="productContents" >
 					<label for="productRate" class="form-label">Product_Rate</label>
-					<input type="number" class="form-control" id="productRate" name="productRate" >
+					<input type="text" class="form-control" id="productRate" name="productRate" >
 					<label for="productJumsu" class="form-label">Product_Jumsu</label>
-					<input type="number" class="form-control" id="productJumsu" name="productJumsu" >
+					<input type="text" class="form-control" id="productJumsu" name="productJumsu" >
 					<button type="submit" class="btn btn-primary">Add</button>
 				</div>
 			</form>
