@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace(중복불가)는 비우면 에러 -->
+  <!-- 해당 mapper를 사용할 DAO의 풀패키지명으로 작성 : 중복방지 -->
+  <mapper namespace="com.winter.app.product.ProductDAO">
+  		
+  	
+  	<!-- list -->
+  	<select id="productList" resultType="ProductDTO">
+  		SELECT * FROM PRODUCT
+  	</select>
+  	
+  	<!-- detail -->
+  	<select id="productDetail" resultType="ProductDTO" parameterType="ProductDTO">
+  		SELECT * FROM PRODUCT WHERE PRODUCTNUM=#{productNum}
+  	</select>
+  	
+  	<!-- insert -->
+  	<insert id="productAdd" parameterType="ProductDTO">
+  		INSERT INTO PRODUCT VALUES (PRODUCT_SEQ.NEXTVAL, #{productName}, #{productContents}, #{productRate}, #{productJumsu})
+  	</insert>
+  	
+  	<!-- Update -->
+  	<update id="productUpdate" parameterType="ProductDTO">
+	  	UPDATE PRODUCT SET PRODUCTNAME=#{productName}, PRODUCTCONTENTS=#{productContents}, PRODUCTRATE=#{productRate}, PRODUCTJUMSU=#{productJumsu} WHERE PRODUCTNUM=#{productNum}
+  	</update>
+  	
+  	<!-- Delete -->
+  	<delete id="productDelete" parameterType="ProductDTO">
+  		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	
+  </mapper>

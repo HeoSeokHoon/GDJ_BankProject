@@ -3,5 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   <configuration>
- 
+  	<typeAliases>
+  		<typeAlias type="com.winter.app.product.ProductDTO" alias="ProductDTO"/>
+  		<typeAlias type="java.lang.String" alias="String"/>
+  	</typeAliases>
   </configuration>
