@@ -15,7 +15,6 @@
 			<tr>
 				<th>Product Num</th>
 				<th>Product Name</th>
-				<th>Product Contents</th>
 				<th>Product Rate</th>
 				<th>Product Jumsu</th>
 			</tr>
@@ -25,7 +24,6 @@
 				<tr>
 					<td>${pageScope.dto.productNum}</td>
 					<td><a href="./detail?productNum=${dto.productNum}">${pageScope.dto.productName}</a></td>
-					<td>${pageScope.dto.productContents}</td>
 					<td>${pageScope.dto.productRate}</td>
 					<td>${pageScope.dto.productJumsu}</td>
 				</tr>

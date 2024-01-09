@@ -8,8 +8,12 @@
   		
   	
   	<!-- list -->
-  	<select id="productList" resultType="ProductDTO">
-  		SELECT * FROM PRODUCT
+  	<select id="productList" resultType="ProductDTO" parameterType="pager">
+  		SELECT * FROM 
+			(SELECT ROWNUM R, P.* FROM 
+				(SELECT * FROM PRODUCT ORDER BY PRODUCTNUM DESC)
+			 P)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
   	<!-- detail -->

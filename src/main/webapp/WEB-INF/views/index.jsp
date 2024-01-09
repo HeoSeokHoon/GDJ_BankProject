@@ -42,6 +42,6 @@
     	</section>
     </div>
     
-    <c:import url="./temps/bootstrap_js"></c:import>
+    <c:import url="./temps/bootstrap_js.jsp"></c:import>
   </body>
 </html>
