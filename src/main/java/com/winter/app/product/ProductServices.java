@@ -15,6 +15,8 @@ public class ProductServices {
 	
 	public List<ProductDTO> productList(Pager pager) throws Exception {
 		pager.makeRow();
+		Long totalCount = productDAO.totalData();
+		pager.makeNum(totalCount);
 		List<ProductDTO> ar = this.productDAO.productList(pager);
 		
 		return ar;

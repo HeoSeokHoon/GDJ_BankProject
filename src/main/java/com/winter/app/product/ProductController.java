@@ -24,6 +24,7 @@ public class ProductController {
 		List<ProductDTO> ar = productServices.productList(pager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("totalData", pager);
 		mv.setViewName("product/list");
 		
 		return mv;

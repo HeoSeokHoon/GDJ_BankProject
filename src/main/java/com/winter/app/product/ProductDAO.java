@@ -44,4 +44,7 @@ public class ProductDAO {
 		return sqlSession.delete(namespace+"productDelete", pD);
 	}
 	
+	public Long totalData() throws Exception {
+		return sqlSession.selectOne(namespace+"totalData");
+	}
 }
