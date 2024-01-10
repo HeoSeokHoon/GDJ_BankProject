@@ -40,12 +40,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${requestScope.list}" var="dto" >
+				<c:forEach items="${list}" var="dto" >
 					<tr>
-						<td>${pageScope.dto.productNum}</td>
-						<td><a href="./detail?productNum=${dto.productNum}">${pageScope.dto.productName}</a></td>
-						<td>${pageScope.dto.productRate}</td>
-						<td>${pageScope.dto.productJumsu}</td>
+						<td>${dto.productNum}</td>
+						<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+						<td>${dto.productRate}</td>
+						<td>${dto.productJumsu}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.util.Pager;
@@ -43,8 +44,8 @@ public class ProductController {
 	
 	//Add
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String productAdd(ProductDTO pD, Model model) throws Exception {
-		int result = this.productServices.productAdd(pD);
+	public String productAdd(ProductDTO pD, MultipartFile contentsFile, Model model) throws Exception {
+		int result = this.productServices.productAdd(pD, contentsFile);
 		String msg = "등록 실패";
 		if(result>0) {
 			msg = "등록 성공";

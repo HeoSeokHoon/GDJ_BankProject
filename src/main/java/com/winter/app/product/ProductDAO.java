@@ -35,6 +35,10 @@ public class ProductDAO {
 		return sqlSession.insert(namespace+"productAdd", pD);
 	}
 	
+	public int addFile(ProductFileDTO productFileDTO) throws Exception {
+		return sqlSession.insert(namespace+"addFile", productFileDTO);
+	}
+	
 	public int productUpdate(ProductDTO pD) {
 		//URL: /product/update, Method: GET, Parameter: productNum	
 		return sqlSession.update(namespace+"productUpdate", pD);

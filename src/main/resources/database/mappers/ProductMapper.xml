@@ -9,6 +9,7 @@
   	<!-- search -->
   	<sql id="search">
   		<where>
+  		<trim prefix=""></trim>
 	  		<if test="kind=='kind1' or kind=='kind3'">
 				PRODUCTNAME LIKE '%'||#{search}||'%'
 	  		</if>
@@ -35,8 +36,15 @@
   	</select>
   	
   	<!-- insert -->
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO CONTENTSFILES VALUES (CONTENTSFILES_SEQ.NEXTVAL, #{productNum}, #{fileName}, #{oriName})
+  	</insert>
+  	
   	<insert id="productAdd" parameterType="ProductDTO">
-  		INSERT INTO PRODUCT VALUES (PRODUCT_SEQ.NEXTVAL, #{productName}, #{productContents}, #{productRate}, #{productJumsu})
+  		<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+  			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO PRODUCT VALUES (#{productNum}, #{productName}, #{productContents}, #{productRate}, #{productJumsu})
   	</insert>
   	
   	<!-- Update -->
