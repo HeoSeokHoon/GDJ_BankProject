@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.util.FileManager;
 import com.winter.app.util.Pager;
 
 @Service
@@ -22,6 +23,9 @@ public class ProductServices {
 	
 	@Autowired
 	public ServletContext servletContext;
+	
+	@Autowired
+	public FileManager fileManager;
 	
 	public List<ProductDTO> productList(Pager pager) throws Exception {
 		pager.makeRow();
@@ -36,36 +40,26 @@ public class ProductServices {
 		return this.productDAO.productDetail(pD);
 	}
 	
-	public int productAdd(ProductDTO pD, MultipartFile file) throws Exception {
+	public int productAdd(ProductDTO pD, MultipartFile [] file) throws Exception {
 		
 		int result = productDAO.productAdd(pD);
 		//1. 어디에 저장할 것인가?
-		String path = servletContext.getRealPath("resources/upload");
-		System.out.println(path);
-		File f = new File(path, "product");
-		if(!f.exists()) {
-			f.mkdirs();
-		}
-		//2. 어떤 파일 명으로 저장할 것인가?
-			//a. 시간을 이용
-		Calendar ca = Calendar.getInstance();
-		String fileName = ca.getTimeInMillis()+"_"+file.getOriginalFilename();
-		System.out.println(fileName);
-			//b. UUID
-		fileName = UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
-		System.out.println(fileName);
-		//3. 파일을 저장
-			//a. FileCopyUtils 클래스 사용
-		f = new File(f, fileName);
-		FileCopyUtils.copy(file.getBytes(), f);
+		String path = servletContext.getRealPath("resources/upload/product");
 		
-		//4. DB에 정보 저장
-		ProductFileDTO prDto = new ProductFileDTO();
-		prDto.setFileName(fileName);
-		prDto.setOriName(file.getOriginalFilename());
-		prDto.setProductNum(pD.getProductNum());
-		result = productDAO.addFile(prDto);
-	
+		for(MultipartFile f:file) {
+			
+			if(f.isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.fileSave(path, f);
+			//4. DB에 정보 저장
+			ProductFileDTO prDto = new ProductFileDTO();
+			prDto.setFileName(fileName);
+			prDto.setOriName(f.getOriginalFilename());
+			prDto.setProductNum(pD.getProductNum());
+			result = productDAO.addFile(prDto);			
+		}
+			
 		return result;
 	}
 	
@@ -74,6 +68,19 @@ public class ProductServices {
 	}
 	
 	public int productDelete(ProductDTO pD) throws Exception {
-		return this.productDAO.productDelete(pD);
+		//파일명 조회
+		List<ProductFileDTO> ar = productDAO.productDetailFiles(pD);
+		
+		//DB에서 삭제
+		int result = productDAO.productDelete(pD);
+		
+		
+		//HDD에서 삭제
+		//경로 생성
+		String path = servletContext.getRealPath("/resources/upload/product");
+		for(ProductFileDTO f : ar) {
+			fileManager.fileDelete(path, f.getFileName());
+		}
+		return result;
 	}
 }

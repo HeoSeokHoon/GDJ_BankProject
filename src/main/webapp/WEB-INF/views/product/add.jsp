@@ -22,7 +22,9 @@
 					<label for="productContents" class="form-label">Product_Contents</label>
 					<textarea class="form-control" id="productContents" name="productContents" ></textarea>
 					<div class="mt-2 mb-2">
-  					<input class="form-control form-control-sm" type="file" name="contentsFile">
+  						<input class="form-control form-control-sm" type="file" name="contentsFile">
+  						<input class="form-control form-control-sm" type="file" name="contentsFile">
+  						<input class="form-control form-control-sm" type="file" name="contentsFile">
   					</div>
 					<label for="productRate" class="form-label">Product_Rate</label>
 					<input type="text" class="form-control" id="productRate" name="productRate" >

@@ -44,7 +44,7 @@ public class ProductController {
 	
 	//Add
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String productAdd(ProductDTO pD, MultipartFile contentsFile, Model model) throws Exception {
+	public String productAdd(ProductDTO pD, MultipartFile [] contentsFile, Model model) throws Exception {
 		int result = this.productServices.productAdd(pD, contentsFile);
 		String msg = "등록 실패";
 		if(result>0) {

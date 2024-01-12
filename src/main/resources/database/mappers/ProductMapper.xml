@@ -31,9 +31,24 @@
   	</select>
   	
   	<!-- detail -->
-  	<select id="productDetail" resultType="ProductDTO" parameterType="ProductDTO">
-  		SELECT * FROM PRODUCT WHERE PRODUCTNUM=#{productNum}
+  	<select id="productDetail" resultMap="getDetail" parameterType="ProductDTO">
+  		SELECT P.*, CF.* FROM PRODUCT P LEFT OUTER JOIN 
+  		CONTENTSFILES CF ON P.PRODUCTNUM = CF.PRODUCTNUM
+		WHERE P.PRODUCTNUM=#{productNum}
   	</select>
+  	
+  	<resultMap type="ProductDTO" id="getDetail">
+  		<id column="PRODUCTNUM" property="productNum"/>
+  		<result column="PRODUCTNAME" property="productName"/>
+  		<result column="PRODUCTCONTENTS" property="productContents"/>
+  		<result column="PRODUCTRATE" property="productRate"/>
+  		<result column="PRODUCTJUMSU" property="productJumsu"/>
+  		<collection property="productFileDTOs" javaType="List" ofType="ProductFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
   	
   	<!-- insert -->
   	<insert id="addFile" parameterType="ProductFileDTO">
@@ -56,6 +71,10 @@
   	<delete id="productDelete" parameterType="ProductDTO">
   		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
   	</delete>
+  	
+  	<select id="productDetailFiles" resultType="ProductFileDTO" parameterType="ProductDTO">
+  		SELECT * FROM CONTENTSFILES WHERE PRODUCTNUM=#{productNum}
+  	</select>
   	
   	<!-- 총 데이터 수 구하기 -->
   	<select id="totalData" resultType="Long">

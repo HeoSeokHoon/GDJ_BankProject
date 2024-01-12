@@ -13,11 +13,28 @@
 	<section class="container-fluid">
 		<div>
 			<c:if test="${not empty detail}">
-				<h3>${detail.productNum}</h3>
-				<div>${detail.productName}</div>
-				<div>${detail.productContents}</div>
-				<div>${detail.productRate}</div>
-				<div>${detail.productJumsu}</div>
+				<table class="table">
+					<tr>
+						<th>ProductNum</th>
+						<th>ProductName</th>
+						<th>ProductContents</th>
+						<th>FileList</th>
+						<th>ProductRate</th>
+						<th>ProductJumsu</th>
+					</tr>
+					<tr>
+						<td>${detail.productNum}</td>
+						<td>${detail.productName}</td>
+						<td>${detail.productContents}</td>
+						<td>
+							<c:forEach items="${detail.productFileDTOs}" var="f">
+								<a href="/resources/upload/product/${f.fileName}">${f.oriName}</a><br>
+							</c:forEach>
+						</td>
+						<td>${detail.productRate}</td>
+						<td>${detail.productJumsu}</td>
+					</tr>
+				</table>
 				<button id="up" data-product-num="${detail.productNum}">Update</button>
 				<button id="del">Delete</button>
 				<form id="frm" action="./update" method="get">

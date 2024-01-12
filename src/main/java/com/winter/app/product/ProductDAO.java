@@ -48,6 +48,10 @@ public class ProductDAO {
 		return sqlSession.delete(namespace+"productDelete", pD);
 	}
 	
+	public List<ProductFileDTO> productDetailFiles(ProductDTO pD) throws Exception {
+		return sqlSession.selectList(namespace+"productDetailFiles", pD);
+	}
+	
 	public Long totalData() throws Exception {
 		return sqlSession.selectOne(namespace+"totalData");
 	}
