@@ -12,7 +12,7 @@
 		<property name="username" value="${oracle.username}"></property>
 		<property name="password" value="${oracle.password}"></property>
 		<property name="url" value="${oracle.url}"></property>
-		<property name="driverClassName" value="${orcle.driver}"></property>
+		<property name="driverClassName" value="${oracle.driver}"></property>
 	</bean>
 	
 	<!-- Connection, sql문이 있는 xml파일의 위치, config 파일의 위치를 알려줌 -->
