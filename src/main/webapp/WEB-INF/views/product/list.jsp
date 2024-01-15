@@ -12,6 +12,9 @@
         <!-- 사용전 경로를 꼭 수정하세요  -->
         <!-- head_css  -->
         <c:import url="../temps/head_css.jsp"></c:import>
+        <style type="text/css">
+        	a{text-decoration: none; color: black}
+        </style>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -41,7 +44,7 @@
 		<div class="container-lg">
 		<table class="table table-hover">
 			<thead>
-				<tr>
+				<tr class="table-dark">
 					<th>Product Num</th>
 					<th>Product Name</th>
 					<th>Product Rate</th>
