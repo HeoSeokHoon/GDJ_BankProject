@@ -1,4 +1,4 @@
-package com.winter.app.board.notice;
+package com.winter.app.board.qna;
 
 import java.util.List;
 
@@ -14,15 +14,14 @@ import com.winter.app.board.BoardService;
 import com.winter.app.util.Pager;
 
 @Controller
-@RequestMapping("/notice/*")
-public class NoticeController {
-	
+@RequestMapping("/qna/*")
+public class QnaController {
+
 	@Autowired
-	@Qualifier("noticeService")
+	@Qualifier("qnaService")
 	private BoardService boardService;
 	
 	//list
-	//@RequestMapping(value = "list", method = RequestMethod.GET)
 	@GetMapping("list")
 	public String getList(Pager pager, Model model) throws Exception{
 		

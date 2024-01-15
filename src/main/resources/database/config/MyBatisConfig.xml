@@ -8,6 +8,7 @@
   		<typeAlias type="com.winter.app.product.ProductFileDTO" alias="ProductFileDTO"/>
   		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
   		<typeAlias type="com.winter.app.board.notice.NoticeDTO" alias="NoticeDTO"/>
+  		<typeAlias type="com.winter.app.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
   		<typeAlias type="java.util.List" alias="List"/>
   		<typeAlias type="java.lang.String" alias="String"/>

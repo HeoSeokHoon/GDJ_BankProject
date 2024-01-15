@@ -1,4 +1,4 @@
-package com.winter.app.board.notice;
+package com.winter.app.board.qna;
 
 import java.util.List;
 
@@ -12,16 +12,15 @@ import com.winter.app.board.BoardService;
 import com.winter.app.util.Pager;
 
 @Service
-public class NoticeService implements BoardService {
+public class QnaService implements BoardService {
 	
 	@Autowired
-	@Qualifier("noticeDAO") //bean의 이름 지정
-	private BoardDAO boardDAO; //boardDAO 타입은 notice와 qna 2개가 있음, 빈의 이름으로 구분
-
+	@Qualifier("qnaDAO")
+	private BoardDAO boardDAO;
+	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
-		
 		return boardDAO.getList(pager);
 	}
 
@@ -48,6 +47,5 @@ public class NoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
+
 }

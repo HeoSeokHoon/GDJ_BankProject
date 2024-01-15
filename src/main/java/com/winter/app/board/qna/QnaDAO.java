@@ -1,28 +1,31 @@
-package com.winter.app.board.notice;
+package com.winter.app.board.qna;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
-import com.winter.app.board.BoardService;
 import com.winter.app.util.Pager;
 
-@Service
-public class NoticeService implements BoardService {
+@Repository
+public class QnaDAO implements BoardDAO {
 	
 	@Autowired
-	@Qualifier("noticeDAO") //bean의 이름 지정
-	private BoardDAO boardDAO; //boardDAO 타입은 notice와 qna 2개가 있음, 빈의 이름으로 구분
+	private SqlSession sqlSession;
+	final String nameSpace = "com.winter.app.board.qna.QnaDAO.";
+
+	@Override
+	public Long getTotalCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		pager.makeRow();
-		
-		return boardDAO.getList(pager);
+		return sqlSession.selectList(nameSpace+"getList", pager);
 	}
 
 	@Override
