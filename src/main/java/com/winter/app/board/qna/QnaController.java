@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
@@ -20,7 +22,17 @@ public class QnaController {
 
 	@Autowired
 	@Qualifier("qnaService")
-	private BoardService boardService;
+	private QnaService boardService;
+	
+	@ModelAttribute("bbs")
+	public Integer getKind() {
+		return 1;
+	}
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "qna";
+	}
 	
 	//list
 	@GetMapping("list")
@@ -44,8 +56,8 @@ public class QnaController {
 	}
 	
 	@PostMapping("add")
-	public String setAdd(BoardDTO boardDTO) throws Exception{
-		int result = boardService.setAdd(boardDTO);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception{
+		int result = boardService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
 	}
 	
@@ -56,8 +68,9 @@ public class QnaController {
 	}
 	
 	@PostMapping("reply")
-	public String setReply(QnaDTO qnaDTO, Model model) throws Exception {
-		model.addAttribute("boardDTO", qnaDTO);
-		return "board/reply";
+	public String setReply(QnaDTO qnaDTO) throws Exception {
+		int result = boardService.setReply(qnaDTO);
+		
+		return "redirect:./list";
 	}
 }

@@ -38,8 +38,17 @@
   	
   	<!-- add -->
   	<insert id="setAdd" parameterType="BoardDTO">
-		  	INSERT INTO NOTICE (BOARDNUM, BOARDHEAD, BOARDWRITER, BOARDCONTENTS)
-		  	VALUES(BOARD_SEQ.NEXTVAL, #{boardHead}, #{boardWriter}, #{boardContents})
+  		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+	  	INSERT INTO NOTICE (BOARDNUM, BOARDHEAD, BOARDWRITER, BOARDCONTENTS)
+	  	VALUES(#{boardNum}, #{boardHead}, #{boardWriter}, #{boardContents})
+  	</insert>
+  	
+  	<!-- fileAdd -->
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  		INSERT INTO NOTICEFILES (FILENUM, BOARDNUM, FILENAME, ORINAME)
+  		VALUES(FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
   	
   </mapper>

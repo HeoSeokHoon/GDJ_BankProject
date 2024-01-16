@@ -49,7 +49,7 @@
                                     </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" name="productContents" id="message" type="text" placeholder="상품 상세 설명을 입력하세요" style="height: 40rem" data-sb-validations="required" value="${dto.productContents}"></textarea>
+                                        <textarea class="form-control" name="productContents" id="message" type="text" placeholder="상품 상세 설명을 입력하세요" style="height: 40rem" data-sb-validations="required"></textarea>
                                         <label for="message"></label>
                                         <div class="invalid-feedback" data-sb-feedback="message:required">상품설명은 필수항목 입니다.</div>
                                     </div>
@@ -84,7 +84,7 @@
 			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 			  lang: "ko-KR",					// 한글 설정
 		});
-		$('#message').summernote('insertText',$('#message').val());
+		$('#message').summernote('code','${dto.productContents}');
 	});
 	</script>
     </body>

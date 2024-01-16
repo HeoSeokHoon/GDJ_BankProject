@@ -25,7 +25,7 @@
 						<c:if test="${not empty detail}">
 							<table class="table table-hover">
 								<thead>
-									<tr>
+									<tr class="table-dark">
 										<th>Product Num</th>
 										<th>Product Name</th>
 										<th>Product Contents</th>
@@ -49,8 +49,8 @@
 									</tr>
 								</tbody>
 							</table>
-						<button class="btn" id="up" data-product-num="${detail.productNum}">Update</button>
-						<button class="btn" id="del">Delete</button>
+						<button class="btn btn-light" id="up" data-product-num="${detail.productNum}">Update</button>
+						<button class="btn btn-light" id="del">Delete</button>
 						<form id="frm" action="./update" method="get">
 							<input type="hidden" name="productNum" value="${detail.productNum}">
 						</form>

@@ -9,7 +9,7 @@
   		SELECT * FROM
   		(SELECT ROWNUM R, N.* FROM
   			(SELECT * FROM QNA
-  			ORDER BY BOARDNUM DESC)
+  			ORDER BY BOARDREF DESC, BOARDSTEP ASC)
   		N)
   		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
@@ -46,5 +46,26 @@
   		</selectKey>
 		  	INSERT INTO QNA (BOARDNUM, BOARDHEAD, BOARDWRITER, BOARDCONTENTS, BOARDREF, BOARDSTEP, BOARDDEPTH)
 		  	VALUES(#{boardNum}, #{boardHead}, #{boardWriter}, #{boardContents}, #{boardNum}, 0, 0)
+  	</insert>
+  	
+  	<!-- reply step update -->
+  	<update id="setReplyUpdate" parameterType="QnaDTO">
+	  	UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
+	  	WHERE BOARDREF=#{boardRef} AND BOARDSTEP > #{boardStep}
+  	</update>
+  	
+  	<!-- reply add -->
+  	<insert id="setReplyAdd" parameterType="QnaDTO">
+  	<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  		INSERT INTO QNA (BOARDNUM, BOARDHEAD, BOARDWRITER, BOARDCONTENTS, BOARDREF, BOARDSTEP, BOARDDEPTH)
+		VALUES(#{boardNum}, #{boardHead}, #{boardWriter}, #{boardContents}, #{boardRef}, #{boardStep}, #{boardDepth})
+  	</insert>
+  	
+  	  	<!-- fileAdd -->
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  		INSERT INTO QNAFILES (FILENUM, BOARDNUM, FILENAME, ORINAME)
+  		VALUES(FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
   </mapper>

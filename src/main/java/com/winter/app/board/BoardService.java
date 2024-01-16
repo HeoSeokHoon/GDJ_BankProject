@@ -2,6 +2,8 @@ package com.winter.app.board;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.winter.app.util.Pager;
 
 public interface BoardService {
@@ -13,7 +15,7 @@ public interface BoardService {
 	public BoardDTO getDetail (BoardDTO boardDTO) throws Exception;
 	
 	//add
-	public int setAdd(BoardDTO boardDTO) throws Exception;
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception;
 	
 	//update
 	public int setUpdate(BoardDTO boardDTO) throws Exception;

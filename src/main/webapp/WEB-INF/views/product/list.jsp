@@ -21,77 +21,72 @@
        		<!-- 사용전 경로를 꼭 수정하세요  -->
             <!-- Navigation-->
            	<c:import url="../temps/header.jsp"></c:import>
-           	<div class="container px-5 my-5">
-           		<div class="text-center mb-5">
-                    <div>
-			<form class="row g-3">
-				<div class="col-auto">
-					<select class="form-select" name="kind" aria-label="Default select example">
-					  <option value="kind1">이름</option>
-					  <option value="kind2">내용</option>
-					  <option value="kind3">이름&내용</option>
-				  	</select>
+           	<div class="container px-5 my-4">
+           		<div class="text-center mb-3">
+					<form class="row g-3">
+						<div class="col-auto">
+							<select class="form-select" name="kind" aria-label="Default select example">
+								<option value="kind1">이름</option>
+								<option value="kind2">내용</option>
+								<option value="kind3">이름&내용</option>
+							</select>
+						</div>
+						<div class="col-auto">
+							<label for="search" class="visually-hidden">Search</label>
+							<input type="text" name="search" class="form-control" id="search" value="${pager.search}">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-light mb-3">Search</button>
+						</div>
+					</form>					
 				</div>
-				<div class="col-auto">
-				  <label for="search" class="visually-hidden">Search</label>
-				  <input type="text" name="search" class="form-control" id="search" value="${pager.search}">
-				</div>
-				<div class="col-auto">
-				  <button type="submit" class="btn btn-primary mb-3">Search</button>
-				</div>
-			</form>
-		</div>
-		<div class="container-lg">
-		<table class="table table-hover">
-			<thead>
-				<tr class="table-dark">
-					<th>No</th>
-					<th>Product Name</th>
-					<th>Rate</th>
-					<th>Product Rating</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list}" var="dto" >
-					<tr>
-						<td>${dto.productNum}</td>
-						<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
-						<td>${dto.productRate}</td>
-						<td>${dto.productJumsu}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-			<nav aria-label="Page navigation example" class="d-flex justify-content-center">
-			  <ul class="pagination">
-			  	<c:if test="${!pager.start}">
-				    <li class="page-item">
-				      <a class="page-link" href="./list?page=${pager.startNum-1}" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-			    </c:if>
-			    
-			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    	<li class="page-item"><a class="page-link" href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}">${i}</a></li>			    
-			    </c:forEach>
-			    
-			    <c:if test="${!pager.last}">
-				    <li class="page-item">
-				      <a class="page-link" href="./list?page=${pager.lastNum+1}&search=${pager.search}&kind=${pager.kind}" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-			    </c:if>
-			  </ul>
-			</nav>
-		</div>
-                    
-                </div>
-                <div>
-                	<a class="btn btn-primary btn-lg" href="./add">상품 등록</a>
-                </div>
-           	</div>
+			</div>
+			<div class="container-lg">
+				<table class="table table-hover">
+					<thead>
+						<tr class="table-dark">
+							<th>No</th>
+							<th>Product Name</th>
+							<th>Rate</th>
+							<th>Product Rating</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var="dto" >
+							<tr>
+								<td>${dto.productNum}</td>
+								<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+								<td>${dto.productRate}</td>
+								<td>${dto.productJumsu}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<a class="btn btn-light mb-3" href="./add">상품 등록</a>
+				<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+				  <ul class="pagination">
+				  	<c:if test="${!pager.start}">
+					    <li class="page-item">
+					      <a class="page-link" href="./list?page=${pager.startNum-1}" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+				    </c:if>
+				    
+				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				    	<li class="page-item"><a class="page-link" href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}">${i}</a></li>			    
+				    </c:forEach>
+				    
+				    <c:if test="${!pager.last}">
+					    <li class="page-item">
+					      <a class="page-link" href="./list?page=${pager.lastNum+1}&search=${pager.search}&kind=${pager.kind}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+				    </c:if>
+				  </ul>
+				</nav>
+			</div>
         </main>
     <!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
