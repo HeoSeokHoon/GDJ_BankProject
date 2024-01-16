@@ -51,4 +51,16 @@
   		VALUES(FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
   	
+  	<select id="getFileList" resultType="BoardFileDTO" parameterType="BoardDTO">
+  		SELECT FILENAME FROM NOTICEFILES WHERE BOARDNUM=#{boardNum}
+  	</select>
+  	
+  	<delete id="setFileDelete" parameterType="BoardDTO">
+  		DELETE NOTICEFILES WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	
+  	<delete id="setDelete" parameterType="BoardDTO">
+  		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	
   </mapper>

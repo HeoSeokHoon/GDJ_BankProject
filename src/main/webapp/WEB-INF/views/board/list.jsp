@@ -57,25 +57,40 @@
                                 </thead>
                                 <tbody>
                                 	<c:forEach items="${list}" var="dto">
-	                                    <tr>
-	                                        <td>${dto.boardNum}</td>
-	                                        <td>
-	                                        	<a href="./detail?boardNum=${dto.boardNum}">
-	                                        		<c:catch>
-		                                        		<c:forEach begin="1" end="${dto.boardDepth}">
-		                                        		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		                                        		</c:forEach>
-		                                        		<c:if test="${dto.boardDepth!=0}">
-		                                        			<img alt="답글" src="/resources/image/board_reply.png">
-														</c:if>
-                        	                		</c:catch>
-	                                        		${dto.boardHead}
-	                                        	</a>
-	                                        </td>
-	                                        <td>${dto.boardWriter}</td>
-	                                        <td>${dto.boardDate}</td>
-	                                        <td>${dto.boardHit}</td>
-	                                    </tr>                                	
+										<c:set var="f" value="0"></c:set>
+                               			<c:catch>
+                               				<c:set var="f" value="${dto.flag}"></c:set>
+                                			<c:if test="${f eq 1}">
+	                                			<tr>
+	                                				<td></td>
+	                                				<td>삭제된 글 입니다.</td>
+	                                				<td></td>
+	                                				<td></td>
+	                                				<td></td>
+	                                			</tr>
+                                			</c:if>
+                               			</c:catch>
+                               			<c:if test="${f eq 0}">
+		                                    <tr>
+		                                        <td>${dto.boardNum}</td>
+		                                        <td>
+		                                        	<a href="./detail?boardNum=${dto.boardNum}">
+		                                        		<c:catch>
+			                                        		<c:forEach begin="1" end="${dto.boardDepth}">
+			                                        		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			                                        		</c:forEach>
+			                                        		<c:if test="${dto.boardDepth!=0}">
+			                                        			<img alt="답글" src="/resources/image/board_reply.png">
+															</c:if>
+	                        	                		</c:catch>
+		                                        		${dto.boardHead}
+		                                        	</a>
+		                                        </td>
+		                                        <td>${dto.boardWriter}</td>
+		                                        <td>${dto.boardDate}</td>
+		                                        <td>${dto.boardHit}</td>
+		                                    </tr>
+	                                    </c:if>
                                 	</c:forEach>
                                 </tbody>
                             </table>

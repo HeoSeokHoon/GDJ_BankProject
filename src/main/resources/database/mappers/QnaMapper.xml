@@ -63,9 +63,24 @@
 		VALUES(#{boardNum}, #{boardHead}, #{boardWriter}, #{boardContents}, #{boardRef}, #{boardStep}, #{boardDepth})
   	</insert>
   	
-  	  	<!-- fileAdd -->
+	<!-- fileAdd -->
   	<insert id="setFileAdd" parameterType="BoardFileDTO">
   		INSERT INTO QNAFILES (FILENUM, BOARDNUM, FILENAME, ORINAME)
   		VALUES(FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
+  	
+  	<!-- fileList -->
+  	<select id="getFileList" resultType="BoardFileDTO" parameterType="BoardDTO">
+  		SELECT FILENAME FROM QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</select>
+  	
+  	<!-- file Delete -->
+  	<delete id="setFileDelete" parameterType="BoardDTO">
+  		DELETE QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	
+  	<update id="setDelete" parameterType="QnaDTO">
+  		UPDATE QNA SET FLAG=#{flag} WHERE BOARDNUM=#{boardNum}
+  	</update>
+  	
   </mapper>

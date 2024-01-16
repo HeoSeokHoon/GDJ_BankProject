@@ -9,7 +9,7 @@
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/product/list">Product</a></li>
                 <li class="nav-item"><a class="nav-link" href="/notice/list">Notice</a></li>
-                <li class="nav-item"><a class="nav-link" href="/qna/list">QNA</a></li>
+                <li class="nav-item"><a class="nav-link" href="/qna/list">Q&A</a></li>
             </ul>
         </div>
     </div>

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
+import com.winter.app.board.qna.QnaDTO;
 import com.winter.app.util.Pager;
 
 @Controller
@@ -59,6 +60,12 @@ public class NoticeController {
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
 		int result = boardService.setAdd(boardDTO, attachs);
+		return "redirect:./list";
+	}
+	
+	@PostMapping("delete")
+	public String setDelete(QnaDTO boardDTO)throws Exception {
+		int result = boardService.setDelete(boardDTO);
 		return "redirect:./list";
 	}
 }
