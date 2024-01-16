@@ -45,10 +45,10 @@
 		<table class="table table-hover">
 			<thead>
 				<tr class="table-dark">
-					<th>Product Num</th>
+					<th>No</th>
 					<th>Product Name</th>
-					<th>Product Rate</th>
-					<th>Product Jumsu</th>
+					<th>Rate</th>
+					<th>Product Rating</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -12,6 +12,9 @@
         <!-- 사용전 경로를 꼭 수정하세요  -->
         <!-- head_css  -->
         <c:import url="../temps/head_css.jsp"></c:import>
+        <style type="text/css">
+        	a{text-decoration: none; color: black}
+        </style>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -40,7 +43,7 @@
                                 	<c:forEach items="${list}" var="dto">
 	                                    <tr>
 	                                        <td>${dto.boardNum}</td>
-	                                        <td>${dto.boardHead}</td>
+	                                        <td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardHead}</a></td>
 	                                        <td>${dto.boardWriter}</td>
 	                                        <td>${dto.boardDate}</td>
 	                                        <td>${dto.boardHit}</td>
@@ -48,6 +51,9 @@
                                 	</c:forEach>
                                 </tbody>
                             </table>
+                            <div>
+                                <a href="./add" class="btn">글쓰기</a>
+                            </div>
                         </div>
                     </div>
                 </div>
