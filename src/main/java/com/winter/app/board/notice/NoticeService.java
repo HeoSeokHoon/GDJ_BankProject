@@ -31,8 +31,10 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
+		pager.setPerPage(5L);
 		pager.makeRow();
-		
+		Long totalCount=boardDAO.getTotalCount(pager);
+		pager.makeNum(totalCount);
 		return boardDAO.getList(pager);
 	}
 
@@ -68,9 +70,9 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+		
+		return boardDAO.setUpdate(boardDTO);
 	}
 
 	@Override
@@ -80,8 +82,7 @@ public class NoticeService implements BoardService {
 		for(BoardFileDTO b:files) {
 			fileManager.fileDelete(path, b.getFileName());
 		}
-		int result = boardDAO.setFileDelete(boardDTO);
-		result = boardDAO.setDelete(boardDTO);
+		int result = boardDAO.setDelete(boardDTO);
 		
 		return result;
 	}

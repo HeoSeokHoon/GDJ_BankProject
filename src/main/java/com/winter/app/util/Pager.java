@@ -28,6 +28,9 @@ public class Pager {
 	}
 	
 	public void makeNum(Long totalCount) {
+		if(totalCount<1) {
+			totalCount=1L;
+		}
 		//1. 총 페이지 구하기
 		this.totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage()!=0) {

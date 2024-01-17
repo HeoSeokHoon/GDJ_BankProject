@@ -5,10 +5,22 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.winter.app.board.notice.NoticeDAO">
   	<!-- list -->
+  	
+ 	<sql id="searchs">
+  		<trim prefix="where" prefixOverrides="OR">
+	  		<if test="kind=='kind1' or kind=='kind3'">
+				BOARDHEAD LIKE '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind=='kind2' or kind=='kind3'">
+	  			OR BOARDCONTENTS LIKE '%'||#{search}||'%'
+	  		</if>
+	  	</trim>		
+  	</sql>
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
   		SELECT * FROM
   		(SELECT ROWNUM R, N.* FROM
   			(SELECT * FROM NOTICE
+  			<include refid="searchs"></include>
   			ORDER BY BOARDNUM DESC)
   		N)
   		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -62,5 +74,23 @@
   	<delete id="setDelete" parameterType="BoardDTO">
   		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
   	</delete>
+  	
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE NOTICE 
+  		<set>
+	  		<if test="boardHead != ''">
+	  		BOARDHEAD=#{boardHead},
+	  		</if>
+	  		<if test="boardContents != ''">
+	  		BOARDCONTENTS=#{boardContents}
+	  		</if>
+  		</set>
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+  	
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOARDNUM) FROM NOTICE
+  		<include refid="searchs"></include>
+  	</select>
   	
   </mapper>

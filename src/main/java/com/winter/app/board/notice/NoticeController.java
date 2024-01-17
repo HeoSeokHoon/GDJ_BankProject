@@ -42,6 +42,7 @@ public class NoticeController {
 		
 		List<BoardDTO> ar = boardService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		return "board/list";
 	}
 	
@@ -67,5 +68,20 @@ public class NoticeController {
 	public String setDelete(QnaDTO boardDTO)throws Exception {
 		int result = boardService.setDelete(boardDTO);
 		return "redirect:./list";
+	}
+	
+	@GetMapping("update")
+	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		
+		return "board/update";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(BoardDTO boardDTO, MultipartFile[]attachs)throws Exception{
+		int result = boardService.setUpdate(boardDTO, attachs);
+		
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 }

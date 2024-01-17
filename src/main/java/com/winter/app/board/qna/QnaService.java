@@ -32,6 +32,8 @@ public class QnaService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
+		Long totalCount=boardDAO.getTotalCount(pager);
+		pager.makeNum(totalCount);
 		return boardDAO.getList(pager);
 	}
 
@@ -61,9 +63,9 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+		int result = boardDAO.setUpdate(boardDTO);
+		return result;
 	}
 
 	@Override

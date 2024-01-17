@@ -20,8 +20,7 @@ public class NoticeDAO implements BoardDAO {
 	
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(nameSpace+"getTotalCount", pager);
 	}
 
 	@Override
@@ -41,8 +40,7 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(nameSpace+"setUpdate",boardDTO);
 	}
 
 	@Override
