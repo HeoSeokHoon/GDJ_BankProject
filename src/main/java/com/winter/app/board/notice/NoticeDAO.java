@@ -10,9 +10,13 @@ import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Pager;
+import com.winter.app.util.TagManager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
+		
+	@Autowired
+	private TagManager tg;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -25,7 +29,11 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		return sqlSession.selectList(nameSpace+"getList", pager);
+		List<BoardDTO> ar = sqlSession.selectList(nameSpace+"getList", pager);
+		for(var boardDTO:ar) {
+			boardDTO = tg.tagManager(boardDTO);
+		}
+		return ar;
 	}
 
 	@Override
@@ -35,6 +43,7 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
+		boardDTO = tg.tagManager(boardDTO);
 		return sqlSession.insert(nameSpace+"setAdd", boardDTO);
 	}
 
