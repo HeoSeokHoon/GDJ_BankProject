@@ -33,6 +33,8 @@ public class NoticeService implements BoardService {
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.setPerPage(5L);
 		pager.makeRow();
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getLastRow());
 		Long totalCount=boardDAO.getTotalCount(pager);
 		pager.makeNum(totalCount);
 		return boardDAO.getList(pager);
