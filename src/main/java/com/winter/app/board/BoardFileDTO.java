@@ -1,6 +1,6 @@
 package com.winter.app.board;
 
-import com.winter.app.product.files.FileDTO;
+import com.winter.app.files.FileDTO;
 
 public class BoardFileDTO extends FileDTO {
 

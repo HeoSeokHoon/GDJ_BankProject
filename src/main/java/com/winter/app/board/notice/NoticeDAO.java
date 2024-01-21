@@ -29,11 +29,7 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		List<BoardDTO> ar = sqlSession.selectList(nameSpace+"getList", pager);
-		for(var boardDTO:ar) {
-			boardDTO = tg.tagManager(boardDTO);
-		}
-		return ar;
+		return sqlSession.selectList(nameSpace+"getList", pager);
 	}
 
 	@Override
@@ -43,7 +39,6 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
-		boardDTO = tg.tagManager(boardDTO);
 		return sqlSession.insert(nameSpace+"setAdd", boardDTO);
 	}
 

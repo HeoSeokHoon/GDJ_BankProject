@@ -1,4 +1,4 @@
-package com.winter.app.product.files;
+package com.winter.app.files;
 
 public class FileDTO {
 	

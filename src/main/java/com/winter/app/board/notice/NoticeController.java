@@ -2,6 +2,8 @@ package com.winter.app.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
 import com.winter.app.board.qna.QnaDTO;
+import com.winter.app.member.MemberDTO;
 import com.winter.app.util.Pager;
 
 @Controller
@@ -41,7 +44,6 @@ public class NoticeController {
 	public String getList(Pager pager, Model model) throws Exception{
 		
 		List<BoardDTO> ar = boardService.getList(pager);
-		System.out.println(ar.size());
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		return "board/list";
@@ -60,7 +62,9 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
+	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		boardDTO.setBoardWriter(memberDTO.getUserName());
 		int result = boardService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
 	}

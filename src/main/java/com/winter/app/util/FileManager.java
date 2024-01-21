@@ -30,15 +30,12 @@ public class FileManager {
 			//a. 시간을 이용
 		Calendar ca = Calendar.getInstance();
 		String fileName = ca.getTimeInMillis()+"_"+file.getOriginalFilename();
-		System.out.println(fileName);
 			//b. UUID
 		fileName = UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
-		System.out.println(fileName);
 		//3. 파일을 저장
 			//a. FileCopyUtils 클래스 사용
 		f = new File(f, fileName);
 		FileCopyUtils.copy(file.getBytes(), f);
-		System.out.println(path);
 		return fileName;
 	}
 }

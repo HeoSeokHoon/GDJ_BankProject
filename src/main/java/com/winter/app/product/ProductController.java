@@ -17,7 +17,7 @@ import com.winter.app.util.Pager;
 public class ProductController {
 	
 	@Autowired
-	private ProductServices productServices;
+	private ProductService productServices;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Pager pager, Model model) throws Exception {

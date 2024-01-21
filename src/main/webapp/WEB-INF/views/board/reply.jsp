@@ -30,10 +30,10 @@
 							  <label for="title" class="form-label">Title</label>
 							  <input type="text" class="form-control" id="title" name="boardHead">
 							</div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="writer" class="form-label">Writer</label>
                                 <input type="text" class="form-control" id="writer" name="boardWriter">
-                            </div>
+                            </div> -->
 							<div class="mb-3">
 							  <label for="contents" class="form-label">Contents</label>
 							  <textarea class="form-control" id="contents" rows="3" name="boardContents"></textarea>

@@ -15,6 +15,7 @@ import com.winter.app.board.BoardFileDTO;
 import com.winter.app.board.BoardService;
 import com.winter.app.util.FileManager;
 import com.winter.app.util.Pager;
+import com.winter.app.util.TagManager;
 
 @Service
 public class NoticeService implements BoardService {
@@ -27,17 +28,22 @@ public class NoticeService implements BoardService {
 	private FileManager fileManager;
 	
 	@Autowired
+	private TagManager tg;
+	
+	@Autowired
 	private ServletContext servletContext;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.setPerPage(5L);
 		pager.makeRow();
-		System.out.println(pager.getStartRow());
-		System.out.println(pager.getLastRow());
+		List<BoardDTO> ar = boardDAO.getList(pager);
+		for(BoardDTO boardDTO:ar) {
+			boardDTO = tg.tagManager(boardDTO);
+		}
 		Long totalCount=boardDAO.getTotalCount(pager);
 		pager.makeNum(totalCount);
-		return boardDAO.getList(pager);
+		return ar;
 	}
 
 	@Override
@@ -48,7 +54,9 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
 		//1. 글을 등록 - 글번호를 알아오기 위해
+		boardDTO = tg.tagManager(boardDTO);
 		int result = boardDAO.setAdd(boardDTO);
+		
 		
 		//2. 파일을 HDD에 저장
 		//2-1 저장할 폴더의 실세 경로 조회
@@ -73,7 +81,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
-		
+		boardDTO = tg.tagManager(boardDTO);
 		return boardDAO.setUpdate(boardDTO);
 	}
 

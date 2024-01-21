@@ -12,7 +12,7 @@ import com.winter.app.util.FileManager;
 import com.winter.app.util.Pager;
 
 @Service
-public class ProductServices {
+public class ProductService {
 
 	@Autowired
 	public ProductDAO productDAO;

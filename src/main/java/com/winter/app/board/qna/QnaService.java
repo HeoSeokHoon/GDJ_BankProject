@@ -15,6 +15,7 @@ import com.winter.app.board.BoardFileDTO;
 import com.winter.app.board.BoardService;
 import com.winter.app.util.FileManager;
 import com.winter.app.util.Pager;
+import com.winter.app.util.TagManager;
 
 @Service
 public class QnaService implements BoardService {
@@ -27,14 +28,21 @@ public class QnaService implements BoardService {
 	private ServletContext servletContext;
 	
 	@Autowired
+	private TagManager tg;
+	
+	@Autowired
 	private FileManager fileManager;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
+		List<BoardDTO> ar = boardDAO.getList(pager);
+		for(BoardDTO boardDTO:ar) {
+			boardDTO = tg.tagManager(boardDTO);
+		}
 		Long totalCount=boardDAO.getTotalCount(pager);
 		pager.makeNum(totalCount);
-		return boardDAO.getList(pager);
+		return ar;
 	}
 
 	@Override
@@ -44,6 +52,7 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+		boardDTO = tg.tagManager(boardDTO);
 		int result = boardDAO.setAdd(boardDTO);
 		
 		String path = servletContext.getRealPath("/resources/upload/qna");
@@ -57,13 +66,13 @@ public class QnaService implements BoardService {
 			boardFileDTO.setOriName(f.getOriginalFilename());
 			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
 			result = boardDAO.setFileAdd(boardFileDTO);
-			System.out.println(path);
 		}
 		return result;
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO, MultipartFile[] attachs) throws Exception {
+		boardDTO = tg.tagManager(boardDTO);
 		int result = boardDAO.setUpdate(boardDTO);
 		return result;
 	}
