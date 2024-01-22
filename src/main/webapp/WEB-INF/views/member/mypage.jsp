@@ -79,7 +79,6 @@ a {
 			</div>
 			<div>
 				<form id="frm" action="./update" method="get">
-					<input type="hidden" name="userName" value="${member.userName}" />
 				</form>
 			</div>
 		</section>

@@ -25,6 +25,12 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public int setUpdate(MemberDTO memberDTO) throws Exception {
+		memberDTO = tg.tagManager(memberDTO);
+		int result = memberDAO.setUpdate(memberDTO);
+		return result;
+	}
+	
 	public int setMember(MemberDTO memberDTO, MultipartFile file) throws Exception{
 		memberDTO = tg.tagManager(memberDTO);
 		int result = memberDAO.setMember(memberDTO);
