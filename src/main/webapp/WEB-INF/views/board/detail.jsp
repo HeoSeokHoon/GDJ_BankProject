@@ -66,8 +66,10 @@
 								<c:if test="${bbs eq 1}">
 		                            <a class="btn btn-light shadow rounded-4 border-0 mb-5" href="reply?boardNum=${boardDTO.boardNum}">답글</a>
 								</c:if>
-								<a id="update" class="btn btn-light shadow rounded-4 border-0 mb-5" href="#">Update</a>
-                               	<a id="delete" class="btn btn-light shadow rounded-4 border-0 mb-5" href="#">Delete</a>
+                                <c:if test="${boardDTO.boardWriter eq member.userName}">
+                                    <a id="update" class="btn btn-light shadow rounded-4 border-0 mb-5" href="#">Update</a>
+                                    <a id="delete" class="btn btn-light shadow rounded-4 border-0 mb-5" href="#">Delete</a>
+                                </c:if> 
                                	<form id="frm" action="./update" method="get">
                                		<input type="hidden" name="boardNum" value="${boardDTO.boardNum}"/>
                                	</form>

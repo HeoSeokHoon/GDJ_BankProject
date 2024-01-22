@@ -26,7 +26,9 @@ public class TagManager {
 		String address = memberDTO.getAddress();
 		
 		memberDTO.setUserName(userName.replaceAll(">", "&gt").replaceAll("<", "&lt"));
-		memberDTO.setPassword(password.replaceAll(">", "&gt").replaceAll("<", "&lt"));
+		if(password!=null) {
+			memberDTO.setPassword(password.replaceAll(">", "&gt").replaceAll("<", "&lt"));			
+		}
 		memberDTO.setName(name.replaceAll(">", "&gt").replaceAll("<", "&lt"));
 		memberDTO.setPhone(phone.replaceAll(">", "&gt").replaceAll("<", "&lt"));
 		memberDTO.setEmail(email.replaceAll(">", "&gt").replaceAll("<", "&lt"));

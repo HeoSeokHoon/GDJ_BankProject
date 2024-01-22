@@ -36,11 +36,6 @@
 										class="form-label">아이디</label>
 								</div>
 								<div class="form-floating mb-3">
-									<input type="password" class="form-control" id="password"
-										name="password" value="${member.password}" /> <label for="password"
-										class="form-label">비밀번호</label>
-								</div>
-								<div class="form-floating mb-3">
 									<input class="form-control" id="name" name="name"
 										placeholder="" value="${member.name}"/> <label for="name" class="form-label">이름</label>
 								</div>

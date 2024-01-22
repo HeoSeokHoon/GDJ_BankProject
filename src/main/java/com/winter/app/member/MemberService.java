@@ -25,6 +25,10 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public MemberDTO getDetail(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getDetail(memberDTO);
+	}
+	
 	public int setUpdate(MemberDTO memberDTO) throws Exception {
 		memberDTO = tg.tagManager(memberDTO);
 		int result = memberDAO.setUpdate(memberDTO);
@@ -54,7 +58,7 @@ public class MemberService {
 		MemberDTO m = memberDAO.getDetail(memberDTO);
 		if(m!=null) {
 			if(m.getPassword().equals(memberDTO.getPassword())) {
-				return m;
+				return memberDTO;
 			}else {
 				m=null;
 			}

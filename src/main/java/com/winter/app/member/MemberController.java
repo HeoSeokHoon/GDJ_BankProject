@@ -20,8 +20,10 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("update")
-	public void setUpdate () throws Exception{
-		
+	public void setUpdate (HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member",memberDTO);
 	}
 	
 	@PostMapping("update")
@@ -29,15 +31,17 @@ public class MemberController {
 		//DB업데이트 후 myPage로 이동
 		MemberDTO mDto = (MemberDTO)session.getAttribute("member");
 		memberDTO.setUserName(mDto.getUserName());
-		memberDTO.setMemberFileDTO(mDto.getMemberFileDTO());
 		int result = memberService.setUpdate(memberDTO);
-		session.setAttribute("member", memberDTO);
 		
 		return "redirect:./mypage";
 	}
 	
 	@GetMapping("mypage")
-	public String getMypage()throws Exception{
+	public String getMypage(HttpSession session, Model model)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member",memberDTO);
+		
 		return "member/mypage";
 	}
 	
