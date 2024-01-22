@@ -71,6 +71,11 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	@GetMapping("agreement")
+	public void setAgreement() throws Exception{
+		
+	}
+	
 	@GetMapping("signup")
 	public String singUp() throws Exception{
 		return "member/signup";

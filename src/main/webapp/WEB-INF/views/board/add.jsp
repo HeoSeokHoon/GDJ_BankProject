@@ -19,6 +19,7 @@
         <!-- 사용전 경로를 꼭 수정하세요  -->
         <!-- head_css  -->
         <c:import url="../temps/head_css.jsp"></c:import>
+        <c:import url="../temps/summernote.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -46,5 +47,12 @@
     <!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script type="text/javascript">
+	$("#contents").summernote({
+		height: 300,
+		minHeight: 300,             
+		maxHeight: 300
+	});
+	</script>
     </body>
 </html>
