@@ -39,6 +39,13 @@
 									<input type="password" class="form-control" id="password"
 										name="password" placeholder="" /> <label for="password"
 										class="form-label">비밀번호</label>
+										<div id="sp" class=""></div>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="password" class="form-control" id="passwordCheck"
+										placeholder="" /> <label for="passwordCheck"
+										class="form-label">비밀번호 확인</label>
+										<div id="sp2" class=""></div>
 								</div>
 								<div class="form-floating mb-3">
 									<input class="form-control" id="name" name="name"
@@ -63,7 +70,7 @@
 										id="file" class="form-control" type="file" name="file">
 								</div>
 								<div class="d-grid">
-									<button class="btn btn-dark" type="submit">회원가입</button>
+									<button id="signUp" class="btn btn-dark" type="submit">회원가입</button>
 								</div>
 							</form>
 						</div>
@@ -75,5 +82,6 @@
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="../resources/js/member/signupCheck.js"></script>
 </body>
 </html>

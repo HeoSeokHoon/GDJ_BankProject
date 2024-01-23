@@ -54,9 +54,8 @@ a {
 										<option class="a" value="kind1">제목</option>
 										<option class="a" value="kind2">내용</option>
 										<option class="a" value="kind3">전체</option>
-									</select> <label for="search" class="visually-hidden">Search</label> <input
-										type="text" name="search" class="form-control" id="search"
-										value="${pager.search}">
+									</select> <input type="text" name="search" class="form-control"
+										id="search" value="${pager.search}">
 									<button type="submit" class="btn btn-light">Search</button>
 								</div>
 							</div>

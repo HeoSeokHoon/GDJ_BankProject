@@ -27,6 +27,8 @@ public class ProductService {
 		pager.makeRow();
 		Long totalCount = productDAO.totalData(pager);
 		pager.makeNum(totalCount);
+		System.out.println(pager.getStartNum());
+		System.out.println(pager.getLastNum());
 		List<ProductDTO> ar = productDAO.getList(pager);
 		
 		return ar;

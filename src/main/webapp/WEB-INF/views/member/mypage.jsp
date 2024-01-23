@@ -91,7 +91,7 @@ a {
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="/resources/js/memberDetail.js"></script>
+	<script src="/resources/js/member/memberDetail.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b71455d55c080ee992b8468b55e8ff2"></script>
 	<script>
 		let container = document.getElementById('map');
