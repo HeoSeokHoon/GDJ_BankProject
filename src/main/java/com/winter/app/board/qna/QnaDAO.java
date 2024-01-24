@@ -16,7 +16,7 @@ public class QnaDAO implements BoardDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	final String nameSpace = "com.winter.app.board.qna.QnaDAO.";
+	private final String nameSpace = "com.winter.app.board.qna.QnaDAO.";
 
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {

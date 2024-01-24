@@ -26,6 +26,13 @@ a {
 		<!-- Navigation-->
 		<c:import url="../temps/header.jsp"></c:import>
 		<div class="container px-5 mt-5">
+			<div class="text-center mb-5">
+				<h1 class="display-5 fw-bolder mb-0">
+					<span class="text-gradient d-inline">
+						Product List
+					</span>
+				</h1>
+			</div>
 			<div class="row g-12 align-items-end">
 				<form class="col-6 mb-3">
 					<div class="input-group col-auto">
@@ -33,8 +40,7 @@ a {
 							<option value="kind1">이름</option>
 							<option value="kind2">내용</option>
 							<option value="kind3">이름&내용</option>
-						</select>
-						<input type="text" name="search" class="form-control" id="search"
+						</select> <input type="text" name="search" class="form-control" id="search"
 							value="${pager.search}">
 						<button type="submit" class="btn btn-light">Search</button>
 					</div>

@@ -29,23 +29,24 @@
 					</div>
 					<div class="row gx-5 justify-content-center">
 						<div class="col-lg-8 col-xl-8">
-							<form method="POST" enctype="multipart/form-data">
+							<form id="frm" method="POST" enctype="multipart/form-data">
 								<div class="form-floating mb-3">
 									<input type="text" class="form-control" id="userName"
 										name="userName" placeholder="" /> <label for="userName"
 										class="form-label">아이디</label>
+										<span id="sp3" class=""></span>
 								</div>
 								<div class="form-floating mb-3">
 									<input type="password" class="form-control" id="password"
 										name="password" placeholder="" /> <label for="password"
 										class="form-label">비밀번호</label>
-										<div id="sp" class=""></div>
+										<span id="sp" class=""></span>
 								</div>
 								<div class="form-floating mb-3">
 									<input type="password" class="form-control" id="passwordCheck"
 										placeholder="" /> <label for="passwordCheck"
 										class="form-label">비밀번호 확인</label>
-										<div id="sp2" class=""></div>
+										<span id="sp2" class=""></span>
 								</div>
 								<div class="form-floating mb-3">
 									<input class="form-control" id="name" name="name"

@@ -28,12 +28,12 @@
 					<h1 class="h3 mb-3 fw-normal">Please Log in</h1>
 					<div class="form-floating">
 						<input type="text" class="form-control" id="floatingInput"
-							placeholder="" name="userName"> <label
+							placeholder="" name="userName" value="test"> <label
 							for="floatingInput">ID</label>
 					</div><br>
 					<div class="form-floating">
 						<input type="password" class="form-control" id="floatingPassword"
-							placeholder="Password" name="password"> <label
+							placeholder="Password" name="password" value="test"> <label
 							for="floatingPassword">Password</label>
 					</div>
 					<c:if test="${msg ne null}">

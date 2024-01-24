@@ -50,10 +50,11 @@
 							</tbody>
 						</table>
 						<button class="btn btn-light" id="up"
-							data-product-num="${detail.productNum}">Update</button>
-						<button class="btn btn-light" id="del">Delete</button>
+							data-product-num="${detail.productNum}">수정</button>
+						<button class="btn btn-light" id="del">삭제</button>
 						<c:if test="${member ne null}">
-							<button class="btn btn-light" id="create">Account Create</button>
+							<button class="btn btn-light" id="create">상품가입</button>
+							<button class="btn btn-light" id="wishList">관심상품</button>
 						</c:if>
 						<form id="frm" action="./update" method="get">
 							<input type="hidden" name="productNum"
@@ -61,7 +62,7 @@
 						</form>
 					</c:if>
 					<c:if test="${empty detail}">
-						<h3>없는 번호 입니다</h3>
+						<h3>없는 상품번호 입니다</h3>
 					</c:if>
 				</div>
 

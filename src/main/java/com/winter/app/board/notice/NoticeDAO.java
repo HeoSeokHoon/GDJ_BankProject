@@ -20,7 +20,7 @@ public class NoticeDAO implements BoardDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	final String nameSpace = "com.winter.app.board.notice.NoticeDAO.";
+	private final String nameSpace = "com.winter.app.board.notice.NoticeDAO.";
 	
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {

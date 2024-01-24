@@ -19,6 +19,21 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("idCheck")
+	public String getIdCheck(MemberDTO memberDTO, Model model) throws Exception {
+		
+		System.out.println(memberDTO.getUserName());
+		memberDTO = memberService.getDetail(memberDTO);
+		
+		int result=0;
+		if(memberDTO == null) {
+			result=1;
+		}
+		model.addAttribute("result",result);
+		
+		return "commons/ajaxResult";
+	}
+	
 	@GetMapping("update")
 	public void setUpdate (HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");

@@ -20,13 +20,11 @@
 				<textarea class="form-control" id="contents" rows="3"
 					name="boardContents">${boardDTO.boardContents}</textarea>
 			</div>
-			<div class=mb-3>
-				<input class="form-control" type="file" name="attachs"> <input
-					class="form-control" type="file" name="attachs"> <input
-					class="form-control" type="file" name="attachs">
+			<div class="mb-3" id="filelist">
 			</div>
 			<div>
 				<button type="submit" class="btn btn-primary">등록</button>
+				<button class="btn btn-primary" type="button" id="fileAdd">파일추가</button>
 			</div>
 		</form>
 	</div>

@@ -20,6 +20,13 @@
 		<!-- Navigation-->
 		<c:import url="../temps/header.jsp"></c:import>
 		<div class="container">
+			<div class="text-center my-5">
+				<h1 class="display-5 fw-bolder mb-0">
+					<span class="text-gradient d-inline"> 
+						내 계좌 목록
+					</span>
+				</h1>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-dark">

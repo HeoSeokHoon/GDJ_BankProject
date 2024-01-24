@@ -1,10 +1,29 @@
 const password = document.querySelector("#password");
 const sp = document.querySelector("#sp");
+const sp2 = document.querySelector("#sp2");
 const check = document.querySelector("#passwordCheck");
 const signUp = document.querySelector("#signUp");
+const sp3 = document.querySelector("#sp3");
 
 let flag = false;
 let flagCheck = false;
+let idCheck = false;
+
+$("#userName").blur(function(){
+  fetch("./idCheck?userName="+$("#userName").val(),{
+    method:"GET",
+  })
+  .then(response=>response.text())
+  .then(response=>{
+    if(response.trim()=='0'){
+      sp3.innerHTML="중복된 아이디 입니다";
+      idCheck=false;
+    }else{
+      sp3.innerHTML="가입가능한 아이디 입니다";
+      idCheck=true;
+    }
+  })
+});
 
 password.addEventListener("change",()=>{
   if(password.value.length < 8){
@@ -42,6 +61,7 @@ signUp.addEventListener("click",function(e){
   if(flag&&flagCheck){
     signUp.setAttribute("type","button");
     alert("회원가입");
+    $("#frm").submit();
   }else{
     signUp.setAttribute("type","button");
     alert("비밀번호를 확인 하세요");

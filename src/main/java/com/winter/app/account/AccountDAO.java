@@ -15,7 +15,7 @@ public class AccountDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private String nameSpace = "com.winter.app.account.AccountDAO.";
+	private final String nameSpace = "com.winter.app.account.AccountDAO.";
 	
 	public int setAdd(AccountDTO accountDTO) throws Exception {
 		return sqlSession.insert(nameSpace+"setAdd", accountDTO);

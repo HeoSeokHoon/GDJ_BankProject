@@ -47,6 +47,7 @@
     <!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
+    <script src="../resources/js/commons/fileManager.js"></script>
 	<script type="text/javascript">
 	$("#contents").summernote({
 		height: 300,

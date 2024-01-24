@@ -11,7 +11,7 @@ public class MemberDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private String nameSpace = "com.winter.app.member.MemberDAO.";
+	private final String nameSpace = "com.winter.app.member.MemberDAO.";
 	
 	public int setUpdate(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(nameSpace+"setUpdate",memberDTO);

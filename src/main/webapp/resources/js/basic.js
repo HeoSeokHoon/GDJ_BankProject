@@ -3,32 +3,37 @@
  */
 
 //js
- const b1 = document.getElementById("b1");
- const b2 = document.querySelector("#b2");
+console.log("basic");
 
- b1.addEventListener("click",()=>{
+let btn = document.querySelector("#btn");
+let btn2 = document.querySelector("#btn2");
 
- })
- let v = b1.innerHTML;
- b1.innerHTML = 'test';
+btn2.addEventListener("click",function(){
+  let t = document.getElementById("title").value;
+  let c = document.getElementById("contents").value;
 
- b1.getAttribute("속성명");
- b1.setAttribute("속성명","값");
- //jquery
- $("#b1").click(()=>{
+  fetch("/notice/add",{
+    method:"POST",
+    headers:{
+      "Content-type":"application/x-www-form-urlencoded"
+    },
+    body:"boardHead="+t+"&boardContents="+c
+  })
+  .then(response=>response.text())
+  .then(response=>console.log(response))
+});
 
- });
+btn.addEventListener("click",function(){
+  console.log("Ajax 시작");
 
- $("#b2").on("click",()=>{
+  fetch("/notice/list",{
+    method:"GET"
+  })
+  .then(response=>response.text())
+  .then((res)=>{
+    document.getElementById("result").innerHTML=res;
+  })
 
- });
- $("#b1").html();
- $("#b1").html("test");
+  console.log("끝");
 
- $("#b1").attr("속성명");
- $("#b1").attr("속성명","값");
-
- $("#b1").prop("속성명");
- $("#b1").prop("속성명","값");
-
- $("#b1").val("값");
+});
