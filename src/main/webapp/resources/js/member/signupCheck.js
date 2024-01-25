@@ -11,7 +11,7 @@ let idCheck = false;
 
 $("#userName").blur(function(){
   fetch("./idCheck?userName="+$("#userName").val(),{
-    method:"GET",
+    method:"GET"
   })
   .then(response=>response.text())
   .then(response=>{
