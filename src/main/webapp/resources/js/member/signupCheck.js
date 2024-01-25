@@ -10,19 +10,41 @@ let flagCheck = false;
 let idCheck = false;
 
 $("#userName").blur(function(){
-  fetch("./idCheck?userName="+$("#userName").val(),{
-    method:"GET"
-  })
-  .then(response=>response.text())
-  .then(response=>{
-    if(response.trim()=='0'){
-      sp3.innerHTML="중복된 아이디 입니다";
-      idCheck=false;
-    }else{
-      sp3.innerHTML="가입가능한 아이디 입니다";
-      idCheck=true;
+  // fetch("./idCheck?userName="+$("#userName").val(),{
+  //   method:"GET"
+  // })
+  // .then(response=>response.text())
+  // .then(response=>{
+  //   if(response.trim()=='0'){
+  //     sp3.innerHTML="중복된 아이디 입니다";
+  //     idCheck=false;
+  //   }else{
+  //     sp3.innerHTML="가입가능한 아이디 입니다";
+  //     idCheck=true;
+  //   }
+  // })
+
+  // $.get("./idCheck?userName="+$("#userName").val(),function(response){
+  //   console.log(response);
+  // })
+  let userName = $("#userName").val()
+  $.ajax({
+    url:"./idCheck",
+    method:"GET",
+    data:{
+      userName:userName
+    },
+    success:function(response){
+      if(response.trim()=='0'){
+            sp3.innerHTML="중복된 아이디 입니다";
+          }else{
+            sp3.innerHTML="가입가능한 아이디 입니다";
+          }
+    },
+    error:function(){
+      alert("ID에 검증 실패");
     }
-  })
+  });
 });
 
 password.addEventListener("change",()=>{
