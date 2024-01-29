@@ -68,23 +68,10 @@
 			</div>
 			<div class="my-3">
 				<ul id="replyList">
-					<c:forEach items="${replyList}" var="reply">
-						<li class="row">
-							<div>
-								<strong class="title">
-									<span>${reply.userName}</span>
-								</strong>
-								<div class="reply">
-									<span>${reply.replyText}</span>
-								</div>
-							</div>
-						</li>
-					</c:forEach>
+					
 				</ul>
-
-				
 			</div>
-			<div class="text-center"><span id="more" data-replyList-page="${replyPager.page}" data-replyList-totalPage="${replyPager.totalPage}">더보기</span></div>
+			<div class="text-center"><span id="more" data-replyList-page="1" data-replyList-totalPage="1">더보기</span></div>
 			<div class="my-3">
 				<form id="replyForm" action="../reply/add" method="POST">
 					<div class="mb-3">
