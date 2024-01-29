@@ -7,4 +7,29 @@
  	<insert id="setAdd" parameterType="AccountDTO">
  		INSERT INTO WISHLIST VALUES(#{productNum},#{userName})
  	</insert>
+ 	
+ 	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+ 		SELECT * FROM
+			(SELECT ROWNUM R, P.* FROM
+				(SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTRATE, PRODUCTJUMSU FROM WISHLIST W
+					LEFT JOIN PRODUCT P
+					USING(PRODUCTNUM)
+					WHERE USERNAME = 'test'
+				ORDER BY PRODUCTNUM DESC)
+			p)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(PRODUCTNUM) FROM WISHLIST WHERE USERNAME=#{search}
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="Map">
+  		DELETE WISHLIST
+  		WHERE PRODUCTNUM IN
+  		<foreach collection="nums" item="product" open="(" separator="," close=")">
+  			#{product}
+  		</foreach>
+  		AND USERNAME=#{member.userName}
+  	</delete>
   </mapper>

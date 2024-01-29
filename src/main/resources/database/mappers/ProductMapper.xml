@@ -42,10 +42,10 @@
   	<sql id="searchs">
   		<trim prefix="where" prefixOverrides="OR">
 	  		<if test="kind=='kind1' or kind=='kind3'">
-				PRODUCTNAME LIKE '%'||#{search}||'%'
+				LOWER(PRODUCTNAME) LIKE '%'||#{search}||'%'
 	  		</if>
 	  		<if test="kind=='kind2' or kind=='kind3'">
-	  			OR PRODUCTCONTENTS LIKE '%'||#{search}||'%'
+	  			OR LOWER(PRODUCTCONTENTS) LIKE '%'||#{search}||'%'
 	  		</if>
 	  	</trim>		
   	</sql>

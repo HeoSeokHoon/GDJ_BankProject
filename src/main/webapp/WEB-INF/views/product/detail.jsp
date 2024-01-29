@@ -21,7 +21,6 @@
 		<c:import url="../temps/header.jsp"></c:import>
 		<div class="container px-5 my-5">
 			<div class="text-center mb-5">
-
 				<div class="container-lg">
 					<c:if test="${not empty detail}">
 						<table class="table table-hover">
@@ -57,17 +56,57 @@
 							<button class="btn btn-light" id="wishList">관심상품</button>
 						</c:if>
 						<form id="frm" action="./update" method="get">
-							<input type="hidden" name="productNum"
-								value="${detail.productNum}">
+							<input type="hidden" name="page" value="${pager.page}"> <input
+								type="hidden" name="search" value="${pager.search}" /> <input
+								type="hidden" name="kind" value="${pager.kind}">
 						</form>
 					</c:if>
 					<c:if test="${empty detail}">
 						<h3>없는 상품번호 입니다</h3>
 					</c:if>
 				</div>
-
 			</div>
+			<div class="my-3">
+				<ul id="replyList">
+					<c:forEach items="${replyList}" var="reply">
+						<li class="row">
+							<div>
+								<strong class="title">
+									<span>${reply.userName}</span>
+								</strong>
+								<div class="reply">
+									<span>${reply.replyText}</span>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
 
+				
+			</div>
+			<div class="text-center"><span id="more" data-replyList-page="${replyPager.page}" data-replyList-totalPage="${replyPager.totalPage}">더보기</span></div>
+			<div class="my-3">
+				<form id="replyForm" action="../reply/add" method="POST">
+					<div class="mb-3">
+						<textarea class="form-control" name="replyText" id="replyText"
+							rows="3"></textarea>
+					</div>
+					<div class="mb-3">
+						<input type="hidden" name="productNum"
+							value="${detail.productNum}"> <select class="form-select"
+							name="replyJumsu" aria-label="Default select example">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+					</div>
+					<div>
+						<button type="button" class="btn btn-dark" id="replyAdd">댓글달기</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</main>
 	<!-- 사용전 경로를 꼭 수정하세요  -->

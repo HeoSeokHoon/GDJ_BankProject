@@ -148,6 +148,8 @@ public class Pager {
 	public String getSearch() {
 		if(this.search==null) {
 			this.setSearch("");
+		}else {
+			this.setSearch(this.search.toLowerCase());
 		}
 		return search;
 	}

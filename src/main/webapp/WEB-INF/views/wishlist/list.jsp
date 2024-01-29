@@ -28,56 +28,49 @@ a {
 		<div class="container px-5 mt-5">
 			<div class="text-center mb-5">
 				<h1 class="display-5 fw-bolder mb-0">
-					<span class="text-gradient d-inline"> Product List </span>
+					<span class="text-gradient d-inline"> Wish List </span>
 				</h1>
-			</div>
-			<div class="row g-12 align-items-end">
-				<form class="col-6 mb-3">
-					<div class="input-group col-auto">
-						<select class="form-select col-auto" name="kind">
-							<option value="kind1">이름</option>
-							<option value="kind2">내용</option>
-							<option value="kind3">이름&내용</option>
-						</select> <input type="text" name="search" class="form-control" id="search"
-							value="${pager.search}">
-						<button type="submit" class="btn btn-light">Search</button>
-					</div>
-				</form>
-				<div class="col-6 d-flex justify-content-end">
-					<a class="btn btn-light mb-3" href="./add">상품 등록</a>
-				</div>
 			</div>
 		</div>
 		<div class="container">
-			<table class="table table-hover">
+			<table class="table table-hover text-center caption-top">
+				<caption>
+					<button id="del" class="btn btn-light">삭제</button>
+					<button id="add" class="btn btn-light">가입</button>
+				</caption>
 				<thead>
 					<tr class="table-dark">
+						<th class="col-2">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value=""
+									id="checkAll"> <label class="form-check-label"
+									for="checkAll" style="width: 50%;">전체선택</label>
+							</div>
+						</th>
 						<th>No</th>
 						<th>Product Name</th>
 						<th>Rate</th>
 						<th>Product Rating</th>
 					</tr>
 				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="dto">
-						<tr>
-							<td>${dto.productNum}</td>
-							<td><a
-								href="./detail?productNum=${dto.productNum}&page=${pager.page}&search=${pager.search}&kind=${pager.kind}">${dto.productName}</a></td>
-							<td>${dto.productRate}</td>
-							<td>${dto.productJumsu}</td>
-						</tr>
-					</c:forEach>
-					<%-- <c:if test="${list.size() != 10}">
-							<c:forEach begin="1" end="${11-list.size()}">
-								<tr>
-									<td style="color : white" disable>빈셀</td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</c:forEach>
-						</c:if> --%>
+				<tbody id="t-body">
+					<form id="deleteForm">
+						<c:forEach items="${list}" var="dto">
+							<tr>
+								<td>
+									<div class="form-check">
+										<input class="form-check-input checks" type="checkbox" name="productNum"
+											value="${dto.productNum}">
+									</div>
+								</td>
+								<td>${dto.productNum}</td>
+								<td><a
+									href="../product/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+								<td>${dto.productRate}</td>
+								<td>${dto.productJumsu}</td>
+							</tr>
+						</c:forEach>
+					</form>
 				</tbody>
 			</table>
 
@@ -92,16 +85,9 @@ a {
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<c:if test="${i eq pager.page}">
-							<li class="page-item"><a class="page-link"
-								href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}"
-								style="color: red;"> ${i} </a></li>
-						</c:if>
-						<c:if test="${i ne pager.page}">
-							<li class="page-item"><a class="page-link"
-								href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}">
-									${i} </a></li>
-						</c:if>
+						<li class="page-item"><a class="page-link"
+							href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}">
+								${i} </a></li>
 					</c:forEach>
 
 					<c:if test="${!pager.last}">
@@ -117,5 +103,6 @@ a {
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="../resources/js/wishlist.js"></script>
 </body>
 </html>

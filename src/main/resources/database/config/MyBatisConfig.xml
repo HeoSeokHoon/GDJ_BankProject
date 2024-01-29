@@ -14,7 +14,9 @@
   		<typeAlias type="com.winter.app.member.MemberFileDTO" alias="MemberFileDTO"/>
   		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.winter.app.account.AccountDTO" alias="AccountDTO"/>
+  		<typeAlias type="com.winter.app.product.ReplyDTO" alias="ReplyDTO"/>
   		<typeAlias type="java.util.List" alias="List"/>
+  		<typeAlias type="java.util.Map" alias="Map"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	</typeAliases>

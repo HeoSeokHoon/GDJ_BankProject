@@ -18,6 +18,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productServices;
+	@Autowired
+	private ReplyService replyService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Pager pager, Model model) throws Exception {
@@ -28,12 +30,22 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(ProductDTO pD, ModelAndView mv) throws Exception {
+	public ModelAndView getDetail(ProductDTO pD, ModelAndView mv, Pager pager) throws Exception {
 		pD = productServices.getDetail(pD);
 		System.out.println(pD.getProductFileDTOs());
 		mv.addObject("detail", pD);
 		mv.setViewName("product/detail");
-
+		mv.addObject("pager",pager);
+		
+		//처음가지고 올때만 댓글 목록도 조회
+		ReplyDTO replyDTO = new ReplyDTO();
+		Pager pager2 = new Pager();
+		replyDTO.setProductNum(pD.getProductNum());
+		List<ReplyDTO> replyList = replyService.getList(replyDTO, pager2);
+		
+		mv.addObject("replyList",replyList);
+		mv.addObject("replyPager", pager2);
+		
 		return mv;
 	}
 	
