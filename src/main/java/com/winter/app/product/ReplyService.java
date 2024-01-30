@@ -28,4 +28,12 @@ public class ReplyService {
 		map.put("DTO", replyDTO);
 		return replyDAO.getList(map);
 	}
+	
+	public int setDelete(ReplyDTO replyDTO)throws Exception{
+		return replyDAO.setDelete(replyDTO);
+	}
+	
+	public int setUpdate(ReplyDTO replyDTO)throws Exception{
+		return replyDAO.setUpdate(replyDTO);
+	}
 }

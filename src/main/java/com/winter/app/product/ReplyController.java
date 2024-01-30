@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.winter.app.member.MemberDTO;
 import com.winter.app.util.Pager;
 
-@Controller
+@RestController
 @RequestMapping("/reply/*")
 public class ReplyController {
 	
@@ -25,16 +26,19 @@ public class ReplyController {
 	private ReplyService replyService;
 	
 	@PostMapping("add")
-	public String setReply(ReplyDTO replyDTO, Pager pager, HttpSession session, Model model)throws Exception{
+	@ResponseBody
+	public Map<String, Object> setReply(ReplyDTO replyDTO, Pager pager, HttpSession session, Model model)throws Exception{
 		MemberDTO memberDTO  = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
 		int result = replyService.setReply(replyDTO);
-		if(result>0) {
-			List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
-			model.addAttribute("list",ar);
-			model.addAttribute("pager",pager);
-		}
-		return "./product/replylist";
+		
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("datas", ar);
+		map.put("pager", pager);
+		
+		return map;
 	}
 	
 	@GetMapping("list")
@@ -49,4 +53,23 @@ public class ReplyController {
 		return map;
 	}
 	
+	@PostMapping("delete")
+	@ResponseBody
+	public Map<String, Object> setDelete(Pager pager, ReplyDTO replyDTO)throws Exception{
+		replyService.setDelete(replyDTO);
+		List<ReplyDTO> ar = replyService.getList(replyDTO, pager);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("datas", ar);
+		map.put("pager", pager);
+		
+		return map;
+	}
+	
+	@PostMapping("update")
+	@ResponseBody
+	public int setUpdate(ReplyDTO replyDTO)throws Exception{
+		int result = replyService.setUpdate(replyDTO);
+		return result;
+	}
 }

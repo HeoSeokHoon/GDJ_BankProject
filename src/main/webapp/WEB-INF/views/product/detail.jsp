@@ -67,7 +67,7 @@
 				</div>
 			</div>
 			<div class="my-3">
-				<ul id="replyList">
+				<ul id="replyList" data-user="${member.userName}">
 					
 				</ul>
 			</div>
@@ -96,6 +96,28 @@
 			</div>
 		</div>
 	</main>
+<!-- Modal -->
+<div class="modal fade" id="replyUpateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="replyUpateModal">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<form method="post" id="replyUpdateForm">
+        <textarea class="form-control" id="replyUpdateContents" rows="3" name="replyText"></textarea>
+				<input type="hidden" value="" name="replyNum" id="replyUpdateNum">
+				<input type="hidden" value="" name="userName" id="replyWriter">
+			</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="replyCloseButton">Cancel</button>
+        <button type="button" class="btn btn-primary" id="replyUpdateButton">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
