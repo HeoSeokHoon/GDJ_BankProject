@@ -24,6 +24,7 @@
 	<beans:bean class="com.winter.app.interceptors.TestInterceptor" id="TestInterceptor"></beans:bean>
 	<beans:bean class="com.winter.app.interceptors.AuthenticationInterceptor" id="AuthenticationInterceptor"></beans:bean>
 	<beans:bean class="com.winter.app.interceptors.WriterCheckInterceptor" id="WriterCheckInterceptor"></beans:bean>
+	<beans:bean class="com.winter.app.interceptors.AdminCheckInterceptor" id="AdminCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -36,6 +37,9 @@
 			<mapping path="/member/mypage"/>
 			<mapping path="/member/update"/>
 			<mapping path="/member/delete"/>
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
 			<exclude-mapping path="/qna/list"/>
 			<beans:ref bean="AuthenticationInterceptor"/>
 		</interceptor>
@@ -46,6 +50,14 @@
 			<mapping path="/notice/delete"/>
 			<beans:ref bean="WriterCheckInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<beans:ref bean="AdminCheckInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	
 	<context:component-scan base-package="com.winter.app" />

@@ -58,6 +58,7 @@ public class MemberService {
 		MemberDTO m = memberDAO.getDetail(memberDTO);
 		if(m!=null) {
 			if(m.getPassword().equals(memberDTO.getPassword())) {
+				memberDTO.setRoleDTOs(m.getRoleDTOs());
 				return memberDTO;
 			}else {
 				m=null;
